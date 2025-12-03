@@ -148,8 +148,8 @@ For issues, feature requests, or contributions, please contact the starter maint
 To get started locally:
 
 ```bash
-git clone https://github.com/sysnormal1/sso-client-protector.git
-cd sso-client-protector
+git clone https://github.com/sysnormal1/java-spring-sso-client-protector.git
+cd java-spring-sso-client-protector
 mvn install
 ```
 

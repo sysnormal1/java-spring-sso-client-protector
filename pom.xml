@@ -13,11 +13,11 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>client-protector</name>
     <description>Spring Boot Starter to protect an application with sso background</description>
-    <url>https://github.com/sysnormal1/sso-client-protector</url>
+    <url>https://github.com/sysnormal1/java-spring-sso-client-protector</url>
 
     <organization>
         <name>SYSNORMAL</name>
-        <url>https://github.com/sysnormal1/sso-client-protector</url>
+        <url>https://github.com/sysnormal1/java-spring-sso-client-protector</url>
     </organization>
 
     <licenses>
@@ -28,9 +28,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/sysnormal1/sso-client-protector</url>
-        <connection>scm:git:git://github.com/sysnormal1/sso-client-protector.git</connection>
-        <developerConnection>scm:git:ssh://github.com/sysnormal1/sso-client-protector.git</developerConnection>
+        <url>https://github.com/sysnormal1/java-spring-sso-client-protector</url>
+        <connection>scm:git:git://github.com/sysnormal1/java-spring-sso-client-protector.git</connection>
+        <developerConnection>scm:git:ssh://github.com/sysnormal1/java-spring-sso-client-protector.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
