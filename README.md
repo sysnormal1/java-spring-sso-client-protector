@@ -1,4 +1,4 @@
-# Base Server SSO Client Security Configuration
+# Sysnormal Sso client protector
 
 This starter provides a Spring Security auto-configuration for integrating Single Sign-On (SSO) authentication into your Spring Boot application. It includes a base security configuration and a filter to validate JWT tokens against an SSO server, ensuring secure access to protected endpoints.
 
