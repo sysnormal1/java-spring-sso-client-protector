@@ -2,7 +2,7 @@
 
 This starter provides a Spring Security auto-configuration for integrating Single Sign-On (SSO) authentication into your Spring Boot application. It includes a base security configuration and a filter to validate JWT tokens against an SSO server, ensuring secure access to protected endpoints.
 
-This starter can also be used as a client implementation of the [SSO Starter](https://github.com/aalencarvz1/sso-starter), allowing other Java-based APIs or backends to easily integrate into the same authentication ecosystem.
+This starter can also be used as a client implementation of the [SSO Starter](https://github.com/sysnormal1/java-spring-sso-starter), allowing other Java-based APIs or backends to easily integrate into the same authentication ecosystem.
 
 ## Features
 - Configures Spring Security with a custom SSO authentication filter.
@@ -60,7 +60,7 @@ sso:
 
 This client library is designed to integrate directly with the SSO Starter server, allowing seamless validation of authentication tokens and centralized access management across multiple applications.
 
-For more details on the SSO server setup, refer to the main [SSO Starter](https://github.com/aalencarvz1/sso-starter).
+For more details on the SSO server setup, refer to the main [SSO Starter](https://github.com/sysnormal1/java-spring-sso-starter).
 
 ---
 ## Contributing
