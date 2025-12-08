@@ -1,10 +1,13 @@
 package com.sysnormal.starters.security.sso.spring.client_protector.configs;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sysnormal.starters.security.sso.spring.client_protector.services.SsoClientProtectorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.Customizer;
@@ -30,19 +33,32 @@ public class WebSecurityAutoConfiguration {
 
     private static final Logger logger = LoggerFactory.getLogger(WebSecurityAutoConfiguration.class);
 
-    /**
-     * default filter check
-     *
-     * @param baseSsoEndpoint the endpoint of sso
-     * @return instance of this base filter check
-     */
-    @Bean
-    public SsoClientProtectorService baseSsoAuthenticationFilterCheck(@Value("${sso.base-endpoint}") String baseSsoEndpoint) {
-        return new SsoClientProtectorService(baseSsoEndpoint);
-    }
-
     @Value("${app.security.public-endpoints}")
     private List<String> publicEndpoints;
+
+    @Bean
+    @ConditionalOnMissingBean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public SsoClientProtectorService ssoClientProtectorService(
+            @Value("${sso.base-endpoint}") String baseSsoEndpoint,
+            @Value("${sso.check-token-endpoint}") String checkToken,
+            @Value("${app.security.public-endpoints}") List<String> publicEndpoints,
+            ObjectMapper mapper
+    ) {
+        return new SsoClientProtectorService(
+                baseSsoEndpoint,
+                checkToken,
+                publicEndpoints,
+                mapper
+        );
+    }
+
+
 
     /**
      * Configure cors

@@ -1,5 +1,6 @@
 package com.sysnormal.starters.security.sso.spring.client_protector.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sysnormal.libs.commons.DefaultDataSwap;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.reactive.function.client.WebClient;
-import tools.jackson.databind.ObjectMapper;
 
 import java.util.List;
 import java.util.Map;
@@ -28,33 +28,39 @@ import java.util.Objects;
  * @author aalencarvz1
  * @version 1.0.0
  */
-@Service
+//@Service bean created on configuration
 public class SsoClientProtectorService extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(SsoClientProtectorService.class);
 
-    @Value("${app.security.public-endpoints}")
-    private List<String> publicEndpoints;
+    private final List<String> publicEndpoints;
 
-    @Value("${sso.base-endpoint}")
-    String baseSsoEndpoint;
+    private final String baseSsoEndpoint;
 
-    @Value("${sso.check-token-endpoint}")
-    private String checkTokenEndPoint;
+    private final String checkTokenEndPoint;
 
-    private WebClient webClient;
+    private final WebClient webClient;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
 
     /**
      * constructor with parameters
      *
      * @param baseSsoEndpoint the endpoint of sso
+     * @param objectMapper  the injected object mapper
      */
-    public SsoClientProtectorService(String baseSsoEndpoint) {
-        this.webClient = WebClient.create(baseSsoEndpoint);
+    public SsoClientProtectorService(
+            @Value("${sso.base-endpoint}") String baseSsoEndpoint,
+            @Value("${sso.check-token-endpoint}") String checkTokenEndPoint,
+            @Value("${app.security.public-endpoints}") List<String> publicEndpoints,
+            ObjectMapper objectMapper
+    ) {
+        this.baseSsoEndpoint = baseSsoEndpoint;
+        this.checkTokenEndPoint = checkTokenEndPoint;
+        this.publicEndpoints = publicEndpoints;
+        this.objectMapper = objectMapper;
+        this.webClient = WebClient.create(this.baseSsoEndpoint);
     }
 
     /**

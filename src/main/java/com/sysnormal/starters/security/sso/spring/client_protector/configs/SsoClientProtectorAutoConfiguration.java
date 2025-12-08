@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Import;
  * @author Alencar
  */
 @AutoConfiguration
-@ConditionalOnClass(name = "org.springframework.boot.SpringApplication")
+//@ConditionalOnClass(name = "org.springframework.boot.SpringApplication")
 @Import({
         WebSecurityAutoConfiguration.class
 })

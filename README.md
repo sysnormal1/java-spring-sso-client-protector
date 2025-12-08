@@ -98,6 +98,9 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 **Alencar Velozo**  
 GitHub: [@aalencarvz1](https://github.com/aalencarvz1)
 
+**Organization**  
+GitHub: [@sysnormal1](https://github.com/sysnormal1)
+
 ---
 
 > 🔗 Published on [Maven Central (Sonatype)](https://central.sonatype.com/artifact/com.sysnormal.starters.security.sso.spring/client-protector)
