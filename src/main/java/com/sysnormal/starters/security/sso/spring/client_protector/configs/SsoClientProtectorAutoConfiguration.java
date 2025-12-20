@@ -1,7 +1,6 @@
 package com.sysnormal.starters.security.sso.spring.client_protector.configs;
 
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Import;
 
 /**
