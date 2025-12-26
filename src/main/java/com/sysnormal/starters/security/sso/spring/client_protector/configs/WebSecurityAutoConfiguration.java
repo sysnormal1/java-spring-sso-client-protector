@@ -92,10 +92,8 @@ public class WebSecurityAutoConfiguration {
         http.csrf(csrf -> csrf.disable()) // desabilita CSRF no novo padrão
                 .cors(Customizer.withDefaults())             // habilita CORS (pode customizar aqui)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(publicEndpoints.toArray(new String[0]))
-                        .permitAll()
-                        .anyRequest()
-                        .authenticated()
+                        .requestMatchers(publicEndpoints.toArray(new String[0])).permitAll()
+                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(baseSsoAuthenticationFilterCheck, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
         ;
