@@ -54,7 +54,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-            <version>4.0.0</version>
+            <version>4.0.1</version>
 		</dependency>
         <dependency>
             <groupId>jakarta.servlet</groupId>
@@ -159,7 +159,7 @@
                 </executions>
             </plugin>
 
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>3.2.8</version>
@@ -172,7 +172,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
             <plugin>
                 <groupId>org.sonatype.central</groupId>
