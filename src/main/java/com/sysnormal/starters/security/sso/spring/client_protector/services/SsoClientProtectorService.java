@@ -143,18 +143,18 @@ public class SsoClientProtectorService extends OncePerRequestFilter {
                     }
                     logger.debug("sso check token response status code {}",statusCode.value());
                     if (statusCode.is2xxSuccessful()) {
-                        if (dataNode != null && dataNode.containsKey("token") && dataNode.containsKey("user")) {
-                            logger.debug("dataNode contains token and user");
+                        if (dataNode != null && dataNode.containsKey("token") && dataNode.containsKey("agent")) {
+                            logger.debug("dataNode contains token and agent");
                             String ssoToken = String.valueOf(dataNode.get("token"));
                             logger.debug("ssoToken {}",ssoToken);
-                            Map<String, Object> user = (Map<String, Object>) dataNode.get("user");
-                            logger.debug("user {}",user);
-                            if (StringUtils.hasText(ssoToken) && StringUtils.hasText(String.valueOf(user.get("id")))) {
-                                logger.debug("has ssoToken and has user.id");
+                            Map<String, Object> agent = (Map<String, Object>) dataNode.get("agent");
+                            logger.debug("agent {}",agent);
+                            if (StringUtils.hasText(ssoToken) && StringUtils.hasText(String.valueOf(agent.get("id")))) {
+                                logger.debug("has ssoToken and has agent.id");
                                 UsernamePasswordAuthenticationToken authentication =
                                         new UsernamePasswordAuthenticationToken(dataNode, null, List.of());
                                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                                logger.debug("user parsed");
+                                logger.debug("agent parsed");
                             } else {
                                 writeBodyResponse(bodyResponse,"missing body data token on sso response",response);
                                 return;
