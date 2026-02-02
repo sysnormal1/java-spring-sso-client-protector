@@ -1,14 +1,13 @@
 package com.sysnormal.starters.security.sso.spring.client_protector.configs;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sysnormal.starters.security.sso.spring.client_protector.services.SsoClientProtectorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -28,6 +27,10 @@ import java.util.List;
 @AutoConfiguration
 @EnableWebSecurity
 @ConditionalOnProperty(prefix = "sso.client.protection", name = "enabled", havingValue = "true", matchIfMissing = true)
+@ComponentScan(basePackageClasses = {
+        //"com.sysnormal.starters.security.sso.spring.client_protector.services",
+        SsoClientProtectorService.class
+})
 public class WebSecurityAutoConfiguration {
 
     private static final Logger logger = LoggerFactory.getLogger(WebSecurityAutoConfiguration.class);
@@ -35,27 +38,32 @@ public class WebSecurityAutoConfiguration {
     @Value("${app.security.public-endpoints}")
     private List<String> publicEndpoints;
 
-    @Bean
-    @ConditionalOnMissingBean
+    /*@Bean
+    //@ConditionalOnMissingBean
     public ObjectMapper objectMapper() {
         return new ObjectMapper();
     }
 
+    @Autowired
+    ObjectMapper objectMapper;
+
+
+
     @Bean
-    @ConditionalOnMissingBean
+    //@ConditionalOnMissingBean
     public SsoClientProtectorService ssoClientProtectorService(
             @Value("${sso.base-endpoint}") String baseSsoEndpoint,
             @Value("${sso.check-token-endpoint}") String checkToken,
-            @Value("${app.security.public-endpoints}") List<String> publicEndpoints,
+            @Value("${app.security.public-endpoints}") List<String> publicEndpoints/*,
             ObjectMapper mapper
     ) {
         return new SsoClientProtectorService(
                 baseSsoEndpoint,
                 checkToken,
                 publicEndpoints,
-                mapper
+                objectMapper
         );
-    }
+    }*/
 
 
 
@@ -86,7 +94,7 @@ public class WebSecurityAutoConfiguration {
      * @return the security filter chain
      * @throws Exception throw exception if error on http build
      */
-    @Bean
+   @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, SsoClientProtectorService baseSsoAuthenticationFilterCheck) throws Exception {
         logger.debug("public endpoints: {} {}", Arrays.toString(publicEndpoints.toArray(new String[0])),publicEndpoints);
         http.csrf(csrf -> csrf.disable()) // desabilita CSRF no novo padrão

@@ -1,20 +1,22 @@
 package com.sysnormal.starters.security.sso.spring.client_protector.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sysnormal.libs.commons.DefaultDataSwap;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.reactive.function.client.WebClient;
+import tools.jackson.databind.ObjectMapper;
 
 import java.util.List;
 import java.util.Map;
@@ -26,29 +28,34 @@ import java.util.Objects;
  * @author aalencarvz1
  * @version 1.0.0
  */
-//@Service bean created on configuration
+@Service// bean created on configuration
 public class SsoClientProtectorService extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(SsoClientProtectorService.class);
 
-    private final List<String> publicEndpoints;
+    @Value("${app.security.public-endpoints}")
+    private List<String> publicEndpoints;
 
-    private final String baseSsoEndpoint;
+    @Value("${sso.check-token-endpoint}")
+    private String baseSsoEndpoint;
 
-    private final String checkTokenEndPoint;
+    @Value("${sso.check-token-endpoint}")
+    private String checkTokenEndPoint;
 
-    private final WebClient webClient;
+    private final WebClient webClient = WebClient.create(this.baseSsoEndpoint);
 
-    private final ObjectMapper objectMapper;
+    /*private final ObjectMapper objectMapper;*/
+
+    @Autowired
+    ObjectMapper objectMapper;
 
 
     /**
      * constructor with parameters
      *
-     * @param baseSsoEndpoint the endpoint of sso
-     * @param objectMapper  the injected object mapper
+     * //@param baseSsoEndpoint the endpoint of sso
      */
-    public SsoClientProtectorService(
+    /*public SsoClientProtectorService(
             @Value("${sso.base-endpoint}") String baseSsoEndpoint,
             @Value("${sso.check-token-endpoint}") String checkTokenEndPoint,
             @Value("${app.security.public-endpoints}") List<String> publicEndpoints,
@@ -59,7 +66,7 @@ public class SsoClientProtectorService extends OncePerRequestFilter {
         this.publicEndpoints = publicEndpoints;
         this.objectMapper = objectMapper;
         this.webClient = WebClient.create(this.baseSsoEndpoint);
-    }
+    }*/
 
     /**
      * helper to write body response
