@@ -42,7 +42,7 @@ public class SsoClientProtectorService extends OncePerRequestFilter {
     @Value("${sso.check-token-endpoint}")
     private String checkTokenEndPoint;
 
-    private final WebClient webClient = WebClient.create(this.baseSsoEndpoint);
+    private final WebClient webClient;//= WebClient.create(this.baseSsoEndpoint);
 
     /*private final ObjectMapper objectMapper;*/
 
@@ -52,21 +52,21 @@ public class SsoClientProtectorService extends OncePerRequestFilter {
 
     /**
      * constructor with parameters
-     *
+     * need this constructor because injected values into variables from properties occurs after application is initialized
      * //@param baseSsoEndpoint the endpoint of sso
      */
-    /*public SsoClientProtectorService(
+    public SsoClientProtectorService(
             @Value("${sso.base-endpoint}") String baseSsoEndpoint,
             @Value("${sso.check-token-endpoint}") String checkTokenEndPoint,
-            @Value("${app.security.public-endpoints}") List<String> publicEndpoints,
-            ObjectMapper objectMapper
+            @Value("${app.security.public-endpoints}") List<String> publicEndpoints/*,
+            ObjectMapper objectMapper*/
     ) {
         this.baseSsoEndpoint = baseSsoEndpoint;
         this.checkTokenEndPoint = checkTokenEndPoint;
         this.publicEndpoints = publicEndpoints;
-        this.objectMapper = objectMapper;
+        //this.objectMapper = objectMapper;
         this.webClient = WebClient.create(this.baseSsoEndpoint);
-    }*/
+    }
 
     /**
      * helper to write body response
