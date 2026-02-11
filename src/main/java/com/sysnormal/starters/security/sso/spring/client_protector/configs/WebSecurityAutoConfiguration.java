@@ -28,7 +28,6 @@ import java.util.List;
 @EnableWebSecurity
 @ConditionalOnProperty(prefix = "sso.client.protection", name = "enabled", havingValue = "true", matchIfMissing = true)
 @ComponentScan(basePackageClasses = {
-        //"com.sysnormal.starters.security.sso.spring.client_protector.services",
         SsoClientProtectorService.class
 })
 public class WebSecurityAutoConfiguration {
@@ -37,35 +36,6 @@ public class WebSecurityAutoConfiguration {
 
     @Value("${app.security.public-endpoints}")
     private List<String> publicEndpoints;
-
-    /*@Bean
-    //@ConditionalOnMissingBean
-    public ObjectMapper objectMapper() {
-        return new ObjectMapper();
-    }
-
-    @Autowired
-    ObjectMapper objectMapper;
-
-
-
-    @Bean
-    //@ConditionalOnMissingBean
-    public SsoClientProtectorService ssoClientProtectorService(
-            @Value("${sso.base-endpoint}") String baseSsoEndpoint,
-            @Value("${sso.check-token-endpoint}") String checkToken,
-            @Value("${app.security.public-endpoints}") List<String> publicEndpoints/*,
-            ObjectMapper mapper
-    ) {
-        return new SsoClientProtectorService(
-                baseSsoEndpoint,
-                checkToken,
-                publicEndpoints,
-                objectMapper
-        );
-    }*/
-
-
 
     /**
      * Configure cors
@@ -79,10 +49,8 @@ public class WebSecurityAutoConfiguration {
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");
         configuration.setAllowCredentials(false); // ou true, se usar cookies/sessão
-
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
-
         return source;
     }
 
