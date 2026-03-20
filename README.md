@@ -1,8 +1,20 @@
 # Sysnormal Sso client protector
 
+![Version](https://img.shields.io/badge/maven--central-0.0.1--SNAPSHOT-orange)
+![Java](https://img.shields.io/badge/Java-21-blue)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.x+-brightgreen)
+![Spring Web](https://img.shields.io/badge/Spring-Web-orange)
+![Jakarta](https://img.shields.io/badge/Jakarta-EE-orange)
+![JPA](https://img.shields.io/badge/JPA-API-blue)
+![Hibernate](https://img.shields.io/badge/Hibernate-ORM-59666C)
+![Lombok](https://img.shields.io/badge/Lombok-annotations-pink)
+![Jackson](https://img.shields.io/badge/Jackson-JSON-blue)
+![Reflections](https://img.shields.io/badge/Reflections-runtime--scanning-lightgrey)
+![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
+
 This starter provides a Spring Security auto-configuration for integrating Single Sign-On (SSO) authentication into your Spring Boot application. It includes a base security configuration and a filter to validate JWT tokens against an SSO server, ensuring secure access to protected endpoints.
 
-This starter can also be used as a client implementation of the [SSO Starter](https://github.com/sysnormal1/java-spring-sso-starter), allowing other Java-based APIs or backends to easily integrate into the same authentication ecosystem.
+This starter can also be used as a client implementation of the [SSO Starter](https://github.com/sysnormal1/sysnormal-spring-boot-sso-starter), allowing other Java-based APIs or backends to easily integrate into the same authentication ecosystem.
 
 ## Features
 - Configures Spring Security with a custom SSO authentication filter.
@@ -24,15 +36,15 @@ Add the following dependency to your `pom.xml` (Maven) or `build.gradle` (Gradle
 ### Maven
 ```xml
 <dependency>
-    <groupId>com.sysnormal.starters.security.sso.spring</groupId>
-    <artifactId>client-protector</artifactId>
+    <groupId>com.sysnormal.security.auth.sso.starter</groupId>
+    <artifactId>sysnormal-spring-boot-starter-sso-client-protector</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 </dependency>
 ```
 
 ### Gradle
 ```groovy
-implementation 'com.sysnormal.starters.security.sso.spring:client-protector:0.0.1-SNAPSHOT'
+implementation 'com.sysnormal.security.auth.sso.starter:sysnormal-spring-boot-starter-sso-client-protector:0.0.1-SNAPSHOT'
 ```
 
 ## Configuration and usage
@@ -74,8 +86,8 @@ For issues, feature requests, or contributions, please contact the starter maint
 To get started locally:
 
 ```bash
-git clone https://github.com/sysnormal1/java-spring-sso-client-protector.git
-cd java-spring-sso-client-protector
+git clone https://github.com/sysnormal1/sysnormal-spring-boot-starter-sso-client-protector.git
+cd sysnormal-spring-boot-starter-sso-client-protector
 mvn install
 ```
 
@@ -102,5 +114,3 @@ GitHub: [@aalencarvz1](https://github.com/aalencarvz1)
 GitHub: [@sysnormal1](https://github.com/sysnormal1)
 
 ---
-
-> 🔗 Published on [Maven Central (Sonatype)](https://central.sonatype.com/artifact/com.sysnormal.starters.security.sso.spring/client-protector)

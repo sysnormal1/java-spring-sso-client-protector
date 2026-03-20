@@ -2,16 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.sysnormal.starters.security.sso.spring</groupId>
-	<artifactId>client-protector</artifactId>
+
+	<!--<groupId>com.sysnormal.security.auth.sso.starter</groupId>-->
+    <groupId>io.github.sysnormal1.security.auth.sso.starter</groupId>
+    <artifactId>sysnormal-spring-boot-starter-sso-client-protector</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>client-protector</name>
+	<name>sysnormal-spring-boot-starter-sso-client-protector</name>
     <description>Spring Boot Starter to protect an application with sso background</description>
-    <url>https://github.com/sysnormal1/java-spring-sso-client-protector</url>
+    <url>https://github.com/sysnormal1/sysnormal-spring-boot-starter-sso-client-protector</url>
 
     <organization>
         <name>SYSNORMAL</name>
-        <url>https://github.com/sysnormal1/java-spring-sso-client-protector</url>
+        <url>https://github.com/sysnormal1/sysnormal-spring-boot-starter-sso-client-protector</url>
     </organization>
 
     <licenses>
@@ -22,9 +24,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/sysnormal1/java-spring-sso-client-protector</url>
-        <connection>scm:git:git://github.com/sysnormal1/java-spring-sso-client-protector.git</connection>
-        <developerConnection>scm:git:ssh://github.com/sysnormal1/java-spring-sso-client-protector.git</developerConnection>
+        <url>https://github.com/sysnormal1/sysnormal-spring-boot-starter-sso-client-protector</url>
+        <connection>scm:git:git://github.com/sysnormal1/sysnormal-spring-boot-starter-sso-client-protector.git</connection>
+        <developerConnection>scm:git:ssh://github.com/sysnormal1/sysnormal-spring-boot-starter-sso-client-protector.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
@@ -49,7 +51,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>4.0.2</version>
+                <version>4.0.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -59,6 +61,11 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
@@ -66,80 +73,66 @@
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webflux</artifactId>
-            <optional>true</optional>
-        </dependency>
+
         <dependency>
             <groupId>tools.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.sysnormal.libs.commons</groupId>
-            <artifactId>default-data-swap</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.sysnormal.libs</groupId>
-            <artifactId>utils</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <optional>true</optional>
-        </dependency>
-	</dependencies>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>central-snapshots</id>
-            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </snapshotRepository>
-        <repository>
-            <id>central-releases</id>
-            <name>Central Repository</name>
-            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </distributionManagement>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.13.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.13.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.13.0</version>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.sysnormal1.commons.core</groupId>
+            <artifactId>default-data-swap-core</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.sysnormal1.commons.core</groupId>
+            <artifactId>utils-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.sysnormal1.security.auth</groupId>
+            <artifactId>auth-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.github.sysnormal1.security.core</groupId>
+            <artifactId>security-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+	</dependencies>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-toolchains-plugin</artifactId>
-                <version>3.2.0</version>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>toolchain</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <toolchains>
-                        <jdk>${java.version}</jdk>
-                    </toolchains>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.1</version>
+                <version>3.15.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -169,7 +162,7 @@
                 </executions>
             </plugin>
 
-            <!--<plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>3.2.8</version>
@@ -182,12 +175,12 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>-->
+            </plugin>
 
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.9.0</version>
+                <version>0.10.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central-releases</publishingServerId>
@@ -195,6 +188,7 @@
                     <checksums>required</checksums>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 

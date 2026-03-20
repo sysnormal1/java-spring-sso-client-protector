@@ -1,1 +1,1 @@
-com.sysnormal.starters.security.sso.spring.client_protector.configs.SsoClientProtectorAutoConfiguration
+com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.configs.ClientProtectorAutoConfiguration
