@@ -36,7 +36,7 @@ Add the following dependency to your `pom.xml` (Maven) or `build.gradle` (Gradle
 ### Maven
 ```xml
 <dependency>
-    <groupId>com.sysnormal.security.auth.sso.starter</groupId>
+    <groupId>io.github.sysnormal1.security.auth.sso.starter</groupId>
     <artifactId>sysnormal-spring-boot-starter-sso-client-protector</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 </dependency>
