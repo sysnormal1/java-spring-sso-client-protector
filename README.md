@@ -56,8 +56,18 @@ This class is auto-configuration.
 
 You need to configure the following properties in your `application.yml` or `application.properties` file:
 
-#### application.yml
+#### obrigatory configurations application.yml
 ```yaml
+spring:
+  jwt:
+    public-key-path: PATH/TO/YOUR/public.pem
+```
+
+#### optional configurations application.yml
+```yaml
+spring: 
+    security:
+      public-endpoints: /api/online,/api/test
 sso:
   base-endpoint: http://localhost:3000
   login-endpoint: /auth/login

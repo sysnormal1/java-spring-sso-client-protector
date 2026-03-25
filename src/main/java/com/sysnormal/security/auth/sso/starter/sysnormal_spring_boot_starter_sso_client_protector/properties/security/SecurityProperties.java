@@ -18,21 +18,6 @@ import java.util.List;
 public class SecurityProperties {
     private boolean enabled = true;
 
-    public List<String> publicEndPoints = List.of(
-            "/online"
-    );
+    public List<String> publicEndPoints = List.of();
 
-    private PasswordRules passwordRules = new PasswordRules();
-
-
-
-    @Getter
-    @Setter
-    public static class PasswordRules {
-        private int minLength = 8;
-        private Boolean requireUppercase = true;
-        private Boolean requireLowercase = true;
-        private Boolean requireDigits = true;
-        private Boolean requireSpecial = false;
-    }
 }

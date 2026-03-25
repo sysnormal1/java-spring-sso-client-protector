@@ -29,12 +29,45 @@ public class JwtService extends JwtCoreService {
         super();
         this.jwtProperties = jwtProperties;
 
+        String publicKeyPath = jwtProperties.getPublicKeyPath();
+
+        logger.info("Initializing JwtService with public key path from spring.jwt.public-key-path property: '{}'", publicKeyPath);
+
         try {
-            this.setPublicPem(Files.readString(Path.of(jwtProperties.getPublicKeyPath())));
-            this.setPublicKey(KeyUtils.parseRsaPublicKey(this.getPublicPem()));
+            Path path = Path.of(publicKeyPath);
+
+            logger.debug("Resolved public key path to absolute path: '{}'", path.toAbsolutePath());
+
+            if (!Files.exists(path)) {
+                logger.error("Public key file does not exist at path: '{}'", path.toAbsolutePath());
+                throw new IllegalStateException("Public key file not found: " + path.toAbsolutePath());
+            }
+
+            if (!Files.isReadable(path)) {
+                logger.error("Public key file is not readable at path: '{}'", path.toAbsolutePath());
+                throw new IllegalStateException("Public key file is not readable: " + path.toAbsolutePath());
+            }
+
+            logger.info("Public key file found. Attempting to read file...");
+
+            String pem = Files.readString(path);
+            this.setPublicPem(pem);
+
+            logger.info("Successfully read public key file ({} bytes).", pem.length());
+
+            this.setPublicKey(KeyUtils.parseRsaPublicKey(pem));
+
+            logger.info("Successfully parsed RSA public key.");
+
             buildJwtParser(this.getPublicKey());
+
+            logger.info("JWT parser successfully initialized.");
+
         } catch (Exception e) {
-            throw new IllegalStateException("Error", e);
+            logger.error("Failed to initialize JwtService with public key path '{}'. Error: {}",
+                    publicKeyPath, e.getMessage(), e);
+
+            throw new IllegalStateException("Failed to initialize JwtService", e);
         }
     }
 
