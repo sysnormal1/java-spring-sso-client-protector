@@ -1,7 +1,7 @@
 package com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.server.auth.filters;
 
 import com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.properties.security.SecurityProperties;
-import com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.services.jwt.JwtService;
+import com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.services.jwt.JwtSsoClientProtectorService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
@@ -26,17 +26,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
-    private final JwtService jwtService;
+    private final JwtSsoClientProtectorService jwtSsoClientProtectorService;
 
     private final SecurityProperties securityProperties;
 
-    public JwtAuthenticationFilter(JwtService jwtService, SecurityProperties securityProperties) {
-        this.jwtService = jwtService;
+    public JwtAuthenticationFilter(JwtSsoClientProtectorService jwtSsoClientProtectorService, SecurityProperties securityProperties) {
+        logger.debug("INIT {}.{}", this.getClass().getSimpleName(), "JwtAuthenticationFilter");
+        this.jwtSsoClientProtectorService = jwtSsoClientProtectorService;
         this.securityProperties = securityProperties;
+        logger.debug("END {}.{}", this.getClass().getSimpleName(), "JwtAuthenticationFilter");
     }
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
+        logger.debug("INIT {}.{}", this.getClass().getSimpleName(), "shouldNotFilter");
+        logger.debug("END {}.{}", this.getClass().getSimpleName(), "shouldNotFilter");
         return securityProperties.getPublicEndPoints().contains(request.getRequestURI());
     }
 
@@ -44,8 +48,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
-                                    FilterChain filterChain)
-            throws ServletException, IOException {
+                                    FilterChain filterChain
+    ) throws ServletException, IOException {
         logger.debug("INIT {}.{} {}",this.getClass().getSimpleName(), "doFilterInternal",request.getRequestURI());
         String header = request.getHeader("Authorization");
         if (header == null || !header.startsWith("Bearer ")) {
@@ -54,7 +58,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         String token = header.substring(7);
         try {
-            Claims claims = jwtService.getClaims(token);
+            Claims claims = jwtSsoClientProtectorService.getClaims(token);
             Long agentId = claims.get("agentId", Long.class);
 
             // Você pode criar uma implementação própria de UserDetails se quiser

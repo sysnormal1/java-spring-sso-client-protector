@@ -1,11 +1,9 @@
 package com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.configs;
 
-import com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.properties.jwt.JwtProperties;
 import com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.properties.security.SecurityProperties;
 import com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.server.auth.filters.CustomAccessDeniedHandler;
 import com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.server.auth.filters.CustomAuthenticationEntryPoint;
 import com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.server.auth.filters.JwtAuthenticationFilter;
-import com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.services.jwt.JwtService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -61,18 +59,23 @@ public class SecurityAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(name = "customAuthenticationEntryPoint")
     public AuthenticationEntryPoint customAuthenticationEntryPoint(ObjectMapper objectMapper) {
+        logger.debug("INIT {}.{}", this.getClass().getSimpleName(), "customAuthenticationEntryPoint");
+        logger.debug("END {}.{}", this.getClass().getSimpleName(), "customAuthenticationEntryPoint");
         return new CustomAuthenticationEntryPoint(objectMapper);
     }
 
     @Bean
     @ConditionalOnMissingBean(name = "customAccessDeniedHandler")
     public AccessDeniedHandler customAccessDeniedHandler(ObjectMapper objectMapper) {
+        logger.debug("INIT {}.{}", this.getClass().getSimpleName(), "customAccessDeniedHandler");
+        logger.debug("END {}.{}", this.getClass().getSimpleName(), "customAccessDeniedHandler");
         return new CustomAccessDeniedHandler(objectMapper);
     }
 
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+        logger.debug("INIT {}.{}", this.getClass().getSimpleName(), "CorsConfigurationSource");
         CorsConfiguration config = new CorsConfiguration();
 
         config.setAllowedOriginPatterns(List.of("*")); // 🔥 qualquer origem
@@ -84,6 +87,7 @@ public class SecurityAutoConfiguration {
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
+        logger.debug("END {}.{}", this.getClass().getSimpleName(), "CorsConfigurationSource");
         return source;
     }
 

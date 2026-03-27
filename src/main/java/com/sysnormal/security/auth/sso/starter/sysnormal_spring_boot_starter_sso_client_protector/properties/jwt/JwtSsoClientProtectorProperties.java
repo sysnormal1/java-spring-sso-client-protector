@@ -13,7 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "spring.jwt")
 @Getter
 @Setter
-public class JwtProperties {
+public class JwtSsoClientProtectorProperties {
     private boolean enabled = true;
     private String publicKeyPath;
 }
