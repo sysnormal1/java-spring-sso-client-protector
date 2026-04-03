@@ -3,6 +3,7 @@ package com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_ss
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
  * jwt properties
@@ -13,6 +14,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "spring.jwt")
 @Getter
 @Setter
+//@Component("jwtSsoClientProtectorProperties")
 public class JwtSsoClientProtectorProperties {
     private boolean enabled = true;
     private String publicKeyPath;

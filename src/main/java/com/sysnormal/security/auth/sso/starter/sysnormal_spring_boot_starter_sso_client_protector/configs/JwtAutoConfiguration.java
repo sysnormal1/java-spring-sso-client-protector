@@ -6,6 +6,8 @@ import com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso
 import com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.services.jwt.JwtSsoClientProtectorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -25,9 +27,20 @@ import java.security.spec.InvalidKeySpecException;
 @EnableConfigurationProperties(JwtSsoClientProtectorProperties.class)
 public class JwtAutoConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(JwtAutoConfiguration.class);
-    @Bean
-    //@ConditionalOnMissingBean(JwtSsoClientProtectorService.class)
-    public JwtSsoClientProtectorService jwtSsoClientProtectorService(JwtSsoClientProtectorProperties jwtSsoClientProtectorProperties) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
+
+    /**
+     * Qualifier of properties contains default spring generated name
+     * @param jwtSsoClientProtectorProperties
+     * @return
+     * @throws NoSuchAlgorithmException
+     * @throws InvalidKeySpecException
+     * @throws IOException
+     */
+    @Bean(name = "jwtSsoClientProtectorService")
+    @ConditionalOnMissingBean(name = "jwtSsoClientProtectorService")
+    public JwtSsoClientProtectorService jwtSsoClientProtectorService(
+            @Qualifier("spring.jwt-com.sysnormal.security.auth.sso.starter.sysnormal_spring_boot_starter_sso_client_protector.properties.jwt.JwtSsoClientProtectorProperties") JwtSsoClientProtectorProperties jwtSsoClientProtectorProperties
+    ) throws NoSuchAlgorithmException, InvalidKeySpecException, IOException {
         logger.debug("INIT {}.{}", this.getClass().getSimpleName(), "jwtSsoClientProtectorService");
         logger.debug("END {}.{}", this.getClass().getSimpleName(), "jwtSsoClientProtectorService");
         return new JwtSsoClientProtectorService(jwtSsoClientProtectorProperties);
@@ -35,7 +48,10 @@ public class JwtAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean(name = "jwtAuthenticationFilter")
-    public JwtAuthenticationFilter jwtAuthenticationFilter(JwtSsoClientProtectorService jwtSsoClientProtectorService, SecurityProperties securityProperties) {
+    public JwtAuthenticationFilter jwtAuthenticationFilter(
+            @Qualifier("jwtSsoClientProtectorService") JwtSsoClientProtectorService jwtSsoClientProtectorService,
+            SecurityProperties securityProperties
+    ) {
         logger.debug("INIT {}.{}", this.getClass().getSimpleName(), "jwtAuthenticationFilter");
         logger.debug("END {}.{}", this.getClass().getSimpleName(), "jwtAuthenticationFilter");
         return new JwtAuthenticationFilter(jwtSsoClientProtectorService,  securityProperties);
