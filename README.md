@@ -1,6 +1,9 @@
-# Sysnormal Sso client protector
+# Sysnormal Sso client protector starter
 
-![Version](https://img.shields.io/badge/maven--central-0.0.1--SNAPSHOT-orange)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.sysnormal1.security.auth.sso.starter/sysnormal-spring-boot-starter-sso-client-protector.svg)](https://central.sonatype.com/artifact/io.github.sysnormal1.security.auth.sso.starter/sysnormal-spring-boot-starter-sso-client-protector)
+[![Repository](https://img.shields.io/badge/view-mvnrepository-blue)](https://mvnrepository.com/artifact/io.github.sysnormal1.security.auth.sso.starter/sysnormal-spring-boot-starter-sso-client-protector)
+[![GitHub tag](https://img.shields.io/github/v/tag/sysnormal1/sysnormal-spring-boot-starter-sso-client-protector)](https://github.com/sysnormal1/sysnormal-spring-boot-starter-sso-client-protector)
+
 ![Java](https://img.shields.io/badge/Java-21-blue)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.x+-brightgreen)
 ![Spring Web](https://img.shields.io/badge/Spring-Web-orange)
@@ -38,7 +41,7 @@ Add the following dependency to your `pom.xml` (Maven) or `build.gradle` (Gradle
 <dependency>
     <groupId>io.github.sysnormal1.security.auth.sso.starter</groupId>
     <artifactId>sysnormal-spring-boot-starter-sso-client-protector</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.3</version>
 </dependency>
 ```
 
