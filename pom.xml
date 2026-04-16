@@ -6,7 +6,7 @@
 	<!--<groupId>com.sysnormal.security.auth.sso.starter</groupId>-->
     <groupId>io.github.sysnormal1.security.auth.sso.starter</groupId>
     <artifactId>sysnormal-spring-boot-starter-sso-client-protector</artifactId>
-	<version>0.0.3</version>
+	<version>0.0.4</version>
 	<name>sysnormal-spring-boot-starter-sso-client-protector</name>
     <description>Spring Boot Starter to protect an application with sso background</description>
     <url>https://github.com/sysnormal1/sysnormal-spring-boot-starter-sso-client-protector</url>
@@ -105,12 +105,12 @@
         <dependency>
             <groupId>io.github.sysnormal1.commons.core</groupId>
             <artifactId>default-data-swap-core</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4</version>
         </dependency>
         <dependency>
             <groupId>io.github.sysnormal1.commons.core</groupId>
             <artifactId>utils-core</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4</version>
         </dependency>
 
         <dependency>
@@ -122,7 +122,7 @@
         <dependency>
             <groupId>io.github.sysnormal1.security.core</groupId>
             <artifactId>security-core</artifactId>
-            <version>0.0.3</version>
+            <version>0.0.4</version>
         </dependency>
 
 	</dependencies>

@@ -41,7 +41,7 @@ Add the following dependency to your `pom.xml` (Maven) or `build.gradle` (Gradle
 <dependency>
     <groupId>io.github.sysnormal1.security.auth.sso.starter</groupId>
     <artifactId>sysnormal-spring-boot-starter-sso-client-protector</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
 </dependency>
 ```
 
