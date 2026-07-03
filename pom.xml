@@ -6,7 +6,7 @@
 	<!--<groupId>com.sysnormal.security.auth.sso.starter</groupId>-->
     <groupId>io.github.sysnormal1.security.auth.sso.starter</groupId>
     <artifactId>sysnormal-spring-boot-starter-sso-client-protector</artifactId>
-	<version>0.0.4</version>
+	<version>0.0.5-SNAPSHOT</version>
 	<name>sysnormal-spring-boot-starter-sso-client-protector</name>
     <description>Spring Boot Starter to protect an application with sso background</description>
     <url>https://github.com/sysnormal1/sysnormal-spring-boot-starter-sso-client-protector</url>
@@ -51,7 +51,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>4.0.5</version>
+                <version>4.1.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -105,24 +105,24 @@
         <dependency>
             <groupId>io.github.sysnormal1.commons.core</groupId>
             <artifactId>default-data-swap-core</artifactId>
-            <version>0.0.4</version>
+            <version>0.0.5-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>io.github.sysnormal1.commons.core</groupId>
             <artifactId>utils-core</artifactId>
-            <version>0.0.4</version>
+            <version>0.0.5-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>io.github.sysnormal1.security.auth</groupId>
             <artifactId>auth-core</artifactId>
-            <version>0.0.2</version>
+            <version>0.0.5-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>io.github.sysnormal1.security.core</groupId>
             <artifactId>security-core</artifactId>
-            <version>0.0.4</version>
+            <version>0.0.5-SNAPSHOT</version>
         </dependency>
 
 	</dependencies>
@@ -180,7 +180,7 @@
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>0.10.0</version>
+                <version>0.11.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central-releases</publishingServerId>

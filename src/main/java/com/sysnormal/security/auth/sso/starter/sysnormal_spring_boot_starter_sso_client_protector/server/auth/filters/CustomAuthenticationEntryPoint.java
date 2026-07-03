@@ -40,7 +40,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
         DefaultDataSwap body = new DefaultDataSwap();
         body.success = false;
         body.message = authException != null ? authException.getMessage() : "not authenticated";
-        body.exception = authException;
+        //body.exception = authException; //excpetion object is large to serialize and is bad pratice externalize it
         //response.getWriter().write(responseBody); //not use like this
         objectMapper.writeValue(response.getOutputStream(), body);
         logger.debug("END {}.{}", this.getClass().getSimpleName(), "commence");
